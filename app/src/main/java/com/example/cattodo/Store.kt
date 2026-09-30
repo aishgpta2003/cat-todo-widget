@@ -1,5 +1,6 @@
 package com.example.cattodo
 
+import android.graphics.Typeface
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
@@ -32,6 +33,9 @@ object Store {
     }
 
     fun font(c: Context): String = prefs(c).getString("font", "Caveat") ?: "Caveat"
+    fun typeface(c: Context): Typeface = try {
+    Typeface.createFromAsset(c.assets, "fonts/${font(c)}.ttf")
+} catch (e: Exception) { Typeface.DEFAULT }
     fun setFont(c: Context, f: String) { prefs(c).edit().putString("font", f).apply(); refresh(c) }
 
     fun refresh(c: Context) {

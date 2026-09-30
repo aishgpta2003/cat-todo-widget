@@ -59,10 +59,12 @@ class MainActivity : Activity() {
         spinner.setSelection(fonts.indexOf(Store.font(this)).coerceAtLeast(0))
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p: AdapterView<*>?, v: View?, pos: Int, id: Long) {
-                Store.setFont(this@MainActivity, fonts[pos])
-            }
-            override fun onNothingSelected(p: AdapterView<*>?) {}
-        }
+    if (fonts[pos] != Store.font(this@MainActivity)) {
+        Store.setFont(this@MainActivity, fonts[pos])
+        draft = input.text.toString()
+        build()
+    }
+}}
         root.addView(spinner)
 
         root.addView(Button(this).apply {
@@ -84,6 +86,7 @@ class MainActivity : Activity() {
             root.addView(TextView(this).apply {
                 text = (if (t.done) "✓  " else "•  ") + t.text
                 textSize = 18f
+                typeface = Store.typeface(this@MainActivity)
                 setPadding(dp(12), dp(12), dp(12), dp(12))
                 setBackgroundColor(Color.parseColor(colors[t.priority]))
                 setOnClickListener {   // tap = done / undone

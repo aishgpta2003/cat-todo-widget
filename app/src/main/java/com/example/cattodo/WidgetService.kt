@@ -42,9 +42,7 @@ class Factory(private val c: Context) : RemoteViewsService.RemoteViewsFactory {
     }
 
     private fun textBitmap(t: Task): Bitmap {
-        val tf = try {
-            Typeface.createFromAsset(c.assets, "fonts/${Store.font(c)}.ttf")
-        } catch (e: Exception) { Typeface.DEFAULT }
+        val tf = Store.typeface(c)
 
         val paint = TextPaint(TextPaint.ANTI_ALIAS_FLAG).apply {
             typeface = tf
