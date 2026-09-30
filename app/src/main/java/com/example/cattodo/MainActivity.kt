@@ -58,13 +58,18 @@ class MainActivity : Activity() {
         spinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, fonts)
         spinner.setSelection(fonts.indexOf(Store.font(this)).coerceAtLeast(0))
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p: AdapterView<*>?, v: View?, pos: Int, id: Long) {
-    if (fonts[pos] != Store.font(this@MainActivity)) {
-        Store.setFont(this@MainActivity, fonts[pos])
-        draft = input.text.toString()
-        build()
+    override fun onItemSelected(p: AdapterView<*>?, v: View?, pos: Int, id: Long) {
+        if (fonts[pos] != Store.font(this@MainActivity)) {
+            Store.setFont(this@MainActivity, fonts[pos])
+            draft = input.text.toString()
+            build()
+        }
     }
-}}
+
+    override fun onNothingSelected(p: AdapterView<*>?) {
+        // Required by interface
+    }
+}
         root.addView(spinner)
 
         root.addView(Button(this).apply {
