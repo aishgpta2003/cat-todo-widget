@@ -32,10 +32,13 @@ object Store {
         refresh(c)
     }
 
-    fun font(c: Context): String = prefs(c).getString("font", "Caveat") ?: "Caveat"
+    fun font(c: Context): String = prefs(c).getString("font", "caveat") ?: "caveat"
     fun typeface(c: Context): Typeface = try {
-    Typeface.createFromAsset(c.assets, "fonts/${font(c)}.ttf")
-} catch (e: Exception) { Typeface.DEFAULT }
+    Typeface.createFromAsset(c.assets, "font/${font(c)}.ttf")
+} catch (e: Exception) { 
+    e.printStackTrace() // Check Logcat for the exact path Android is looking for
+    Typeface.DEFAULT 
+}
     fun setFont(c: Context, f: String) { prefs(c).edit().putString("font", f).apply(); refresh(c) }
 
     fun refresh(c: Context) {
