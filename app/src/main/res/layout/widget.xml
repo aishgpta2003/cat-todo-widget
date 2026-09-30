@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@drawable/bg" android:padding="12dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:paddingBottom="6dp">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="My Tasks 🐾"
+            android:textSize="18sp" android:textStyle="bold" android:textColor="#4A3B47"/>
+        <TextView android:id="@+id/addBtn" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="＋ Add"
+            android:textSize="16sp" android:textColor="#FF6B8A" android:padding="4dp"/>
+    </LinearLayout>
+
+    <ListView android:id="@+id/list" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:divider="@null" android:dividerHeight="6dp"/>
+</LinearLayout>
